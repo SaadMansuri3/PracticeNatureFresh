@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+
+
 
 namespace NatureFreshEF.Models
 {
     public class RegisterViewModel
     {
         
-            [HiddenInput]
+            [System.Web.Mvc.HiddenInput]
             public int Id { get; set; }
             //
             [Required(ErrorMessage = "Name Cannot Be Blank")]
@@ -24,11 +26,20 @@ namespace NatureFreshEF.Models
             //
 
             [Required(ErrorMessage = "Password Cannot Be Blank")]
+            [DataType(DataType.Password)]
             [StringLength(maximumLength: 20, ErrorMessage = "Password Should be between 5 to 20 characters", MinimumLength = 5)]
             public string Password { get; set; }
-            //
+        //
 
-            [Required(ErrorMessage = "Age Cannot Be Blank")]
+            [Required(ErrorMessage = "Please Enter Your Password Once Again!")]
+            [Display(Name = " Confirm Password")]
+            [DataType(DataType.Password)]
+            [NotMapped]
+            [Compare("Password", ErrorMessage = "Confirm paassword does not match!")]
+
+            public string RePassword { get; set; }
+
+           [Required(ErrorMessage = "Age Cannot Be Blank")]
             [Range(5, 100, ErrorMessage = "Age Should be Between 5 and 100")]
             public int Age { get; set; }
             //
