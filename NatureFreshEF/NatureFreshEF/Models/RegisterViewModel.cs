@@ -11,8 +11,9 @@ namespace NatureFreshEF.Models
 {
     public class RegisterViewModel
     {
-        
-            [System.Web.Mvc.HiddenInput]
+        private const string emailRegex = @"^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,3})";
+
+        [System.Web.Mvc.HiddenInput]
             public int Id { get; set; }
             //
             [Required(ErrorMessage = "Name Cannot Be Blank")]
@@ -61,7 +62,9 @@ namespace NatureFreshEF.Models
             public string Mobile { get; set; }
 
             [Required(ErrorMessage = "Email Cannot Be Blank")]
-            public string Email { get; set; }
+            [RegularExpression(emailRegex, ErrorMessage = "Your email address is not in a valid format. Example of correct format: joe.example@example.org")]
+        //[DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
        
     }
 }

@@ -21,13 +21,13 @@ namespace NatureFreshEF.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Your Password Once Again!")]
-        [Display(Name = " Confirm Password")]
-        [DataType(DataType.Password)]
-        [NotMapped]
-        [Compare("Password", ErrorMessage = "Confirm paassword does not match!")]
+        //[Required(ErrorMessage = "Please Enter Your Password Once Again!")]
+        //[Display(Name = " Confirm Password")]
+        //[DataType(DataType.Password)]
+        //[NotMapped]
+        //[Compare("Password", ErrorMessage = "Confirm paassword does not match!")]
 
-        public string RePassword { get; set; }
+        //public string RePassword { get; set; }
 
     }
 }

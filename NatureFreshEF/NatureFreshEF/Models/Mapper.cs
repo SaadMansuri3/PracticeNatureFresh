@@ -19,6 +19,7 @@ namespace NatureFreshEF.Models
                 Password = RegCustView.Password,
                 age = RegCustView.Age,
                 Address = RegCustView.Address,
+                Zipcode = RegCustView.Zipcode,
                 Mobile = RegCustView.Mobile,
                 Email = RegCustView.Email
             };
