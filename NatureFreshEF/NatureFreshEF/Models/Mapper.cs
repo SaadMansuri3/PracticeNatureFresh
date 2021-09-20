@@ -23,5 +23,16 @@ namespace NatureFreshEF.Models
                 Email = RegCustView.Email
             };
         }
+
+        public static LoginCustomer Map(LoginViewModel loginView)
+        {
+
+            return new LoginCustomer()
+            {
+                CustId = loginView.CustId,
+                Username = loginView.Username,
+                Password = loginView.Password
+            };
+        }
     }
 }

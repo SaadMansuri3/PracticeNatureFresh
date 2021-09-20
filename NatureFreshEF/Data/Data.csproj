@@ -58,7 +58,9 @@
     <Compile Include="Entities\CustomerDb.cs" />
     <Compile Include="Entities\RegCustomer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ILoginRepo.cs" />
     <Compile Include="Repository\IRegisterRepo.cs" />
+    <Compile Include="Repository\LoginRepo.cs" />
     <Compile Include="Repository\RegisterRepo.cs" />
   </ItemGroup>
   <ItemGroup>

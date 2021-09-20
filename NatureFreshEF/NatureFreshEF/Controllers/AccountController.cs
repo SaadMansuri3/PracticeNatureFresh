@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Web;
+using System.ComponentModel;
 using System.Web.Mvc;
 using NatureFreshEF.Models;
 using Data.Entities;
@@ -11,10 +13,12 @@ namespace NatureFreshEF.Controllers
     {
         CustomerDb db = new CustomerDb();
         RegisterRepo repo;
+        LoginRepo Lrepo;
 
         public AccountController() // Mandatory Constructor, if not given the program will throw Exc 'repo is null'
         {
             repo = new RegisterRepo(new CustomerDb());
+            Lrepo = new LoginRepo(new CustomerDb());
         }
 
         public ActionResult Index()
@@ -30,27 +34,18 @@ namespace NatureFreshEF.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel objRegModel)
         {
+
             if (ModelState.IsValid)
             {
                 RegCustomer objRegCust = new RegCustomer();
-                //objRegCust.Name = objRegModel.Name;
-                //objRegCust.Username = objRegModel.Username;
-                //objRegCust.Password = objRegModel.Password;
-                //objRegCust.Address = objRegModel.Address;
-                //objRegCust.Zipcode = objRegModel.Zipcode;
-                //objRegCust.age = objRegModel.Age;
-                //objRegCust.Mobile = objRegModel.Mobile;
-                //objRegCust.Email = objRegModel.Email;
-
-                //repo.AddCust(objRegCust); //AddCust is a Method From Repo
                 repo.AddCust(Mapper.DbMapView(objRegModel));
                 repo.Save();
-                //db.RegCustomers.Add(objRegCust);
-                //db.SaveChanges();
                 return View(objRegModel);
             }
             return View();
         }
+
+        
 
         public ActionResult Login()
         {
@@ -58,9 +53,18 @@ namespace NatureFreshEF.Controllers
             return View(objLoginModel);
         }
 
+
         [HttpPost]
         public ActionResult Login(LoginViewModel objLoginModel)
-        { 
+        {
+           
+            if (ModelState.IsValid)
+            {
+                LoginCustomer objLoginCust = new LoginCustomer();
+                Lrepo.AddCust(Mapper.Map(objLoginModel));
+                Lrepo.Save();
+                return View(objLoginModel);
+            }
             return View();
         }
     }
