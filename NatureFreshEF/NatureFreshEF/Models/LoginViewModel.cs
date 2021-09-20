@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+
 
 namespace NatureFreshEF.Models
 {
@@ -18,7 +18,16 @@ namespace NatureFreshEF.Models
         //
 
         [Required(ErrorMessage = "Password Cannot Be Blank")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Your Password Once Again!")]
+        [Display(Name = " Confirm Password")]
+        [DataType(DataType.Password)]
+        [NotMapped]
+        [Compare("Password", ErrorMessage = "Confirm paassword does not match!")]
+
+        public string RePassword { get; set; }
 
     }
 }

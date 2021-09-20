@@ -34,19 +34,33 @@ namespace NatureFreshEF.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel objRegModel)
         {
-
-            if (ModelState.IsValid)
+            if(db.RegCustomers.Any(x => x.Username == objRegModel.Username))
+            {
+                ViewBag.Notification = "This Account is already existed";
+                return View();
+            }
+            else if (ModelState.IsValid)
             {
                 RegCustomer objRegCust = new RegCustomer();
                 repo.AddCust(Mapper.DbMapView(objRegModel));
                 repo.Save();
-                return View(objRegModel);
+                Session["IdSS"] = objRegModel.Id.ToString();
+                Session["UsernameSS"] = objRegModel.Username.ToString();
+                return RedirectToAction("Index", "Home");
+                
             }
             return View();
+
         }
 
-        
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
 
+
+        [HttpGet]
         public ActionResult Login()
         {
             LoginViewModel objLoginModel = new LoginViewModel();
@@ -55,15 +69,22 @@ namespace NatureFreshEF.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel objLoginModel)
         {
-           
+            var checkLogin = db.LoginCustomers.Where(x => x.Username.Equals(objLoginModel.Username) && x.Password.Equals(objLoginModel.Password)).FirstOrDefault();
             if (ModelState.IsValid)
             {
+                Session["IdUsSS"] = objLoginModel.CustId.ToString();
+                Session["UsernameSS"] = objLoginModel.Username.ToString();
                 LoginCustomer objLoginCust = new LoginCustomer();
                 Lrepo.AddCust(Mapper.Map(objLoginModel));
                 Lrepo.Save();
                 return View(objLoginModel);
+            }
+            else if(checkLogin==null)
+            {
+                ViewBag.Notification = "Wrong Username or Password";
             }
             return View();
         }

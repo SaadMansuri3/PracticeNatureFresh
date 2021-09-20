@@ -17,26 +17,32 @@ namespace Data.Entities
 
         public int id { get; set; }
 
+        
         [StringLength(20)]
         public string Name { get; set; }
 
+        [Required]
         [StringLength(20)]
         public string Username { get; set; }
-
+        
         [StringLength(20)]
         public string Password { get; set; }
 
         public int age { get; set; }
 
+        
         [StringLength(200)]
         public string Address { get; set; }
 
+       
         [StringLength(20)]
         public string Zipcode { get; set; }
 
+        
         [StringLength(20)]
         public string Mobile { get; set; }
 
+        
         [StringLength(50)]
         public string Email { get; set; }
 
