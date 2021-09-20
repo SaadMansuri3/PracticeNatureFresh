@@ -7,7 +7,7 @@ using NatureFreshEF.Models;
 
 namespace NatureFreshEF.Models
 {
-    public class Mapper
+    public static class Mapper
     {
         public static RegCustomer DbMapView(RegisterViewModel RegCustView)
         {
@@ -22,6 +22,21 @@ namespace NatureFreshEF.Models
                 Mobile = RegCustView.Mobile,
                 Email = RegCustView.Email
             };
+        }
+
+        public static ProductsModel ProductDbMapView(Products ProdDb)
+        {
+            return new ProductsModel()
+            {
+                Id = ProdDb.Id,
+                Name = Capitalize(ProdDb.Name),
+                Quantity = ProdDb.Quantity,
+                Price = ProdDb.Price
+            };
+        }
+        public static string Capitalize(this string word)
+        {
+            return word.Substring(0, 1).ToUpper() + word.Substring(1).ToLower();
         }
     }
 }
