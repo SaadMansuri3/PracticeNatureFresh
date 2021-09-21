@@ -9,7 +9,7 @@ namespace Data.Repository
 {
     interface IRegisterRepo
     {
-        void AddCust(RegCustomer cust);
+        int AddCust(RegCustomer cust);
         void Save();
     }
 }

@@ -42,9 +42,12 @@ namespace NatureFreshEF.Controllers
             else if (ModelState.IsValid)
             {
                 RegCustomer objRegCust = new RegCustomer();
-                repo.AddCust(Mapper.DbMapView(objRegModel));
+                int id = repo.AddCust(Mapper.DbMapView(objRegModel));
+                //Testing id Fetch
                 repo.Save();
-                Session["IdSS"] = objRegModel.Id.ToString();
+                //repo - db - regcustomers- local -[0].id
+
+                Session["IdSS"] = objRegModel.id.ToString();
                 Session["UsernameSS"] = objRegModel.Username.ToString();
                 return RedirectToAction("Index", "Home");
                 

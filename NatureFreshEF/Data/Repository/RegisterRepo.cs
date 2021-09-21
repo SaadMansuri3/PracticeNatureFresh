@@ -15,10 +15,12 @@ namespace Data.Repository
         {
             this.db = db;
         }
-        public void AddCust(RegCustomer cust)
+        public int AddCust(RegCustomer cust)
         {
             db.RegCustomers.Add(cust);
             Save();
+            int id = db.RegCustomers.Local[0].id;
+            return id; 
         }
         public void Save()
         {

@@ -13,7 +13,7 @@ namespace NatureFreshEF.Models
         {
             return new RegCustomer()
             {
-                id = RegCustView.Id,
+                id = RegCustView.id,
                 Name = RegCustView.Name,
                 Username = RegCustView.Username,
                 Password = RegCustView.Password,

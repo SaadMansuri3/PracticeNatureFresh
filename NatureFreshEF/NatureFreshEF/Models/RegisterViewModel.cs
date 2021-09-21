@@ -13,8 +13,8 @@ namespace NatureFreshEF.Models
     {
         private const string emailRegex = @"^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,3})";
 
-        [System.Web.Mvc.HiddenInput]
-            public int Id { get; set; }
+        //[System.Web.Mvc.HiddenInput]
+            public int id { get; set; } 
             //
             [Required(ErrorMessage = "Name Cannot Be Blank")]
             [StringLength(maximumLength: 20, ErrorMessage = "Name Should be between 2 to 20 characters", MinimumLength = 2)]
