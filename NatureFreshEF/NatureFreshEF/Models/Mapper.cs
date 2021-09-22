@@ -24,6 +24,21 @@ namespace NatureFreshEF.Models
                 Email = RegCustView.Email
             };
         }
+        public static NatureFreshEF.Models.RegisterViewModel MapCust(Data.Entities.RegCustomer cust)
+        {
+            return new NatureFreshEF.Models.RegisterViewModel()
+            {
+
+                id = cust.id,
+                Name = cust.Name,
+                Username = cust.Username,
+                Password = cust.Password,
+                Age = cust.age,
+                Address = cust.Address,
+                Mobile = cust.Mobile,
+                Email = cust.Email
+            };
+        }
 
         public static LoginCustomer Map(LoginViewModel loginView)
         {

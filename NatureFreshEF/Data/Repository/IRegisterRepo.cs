@@ -9,7 +9,12 @@ namespace Data.Repository
 {
     interface IRegisterRepo
     {
-        int AddCust(RegCustomer cust);
+        IEnumerable<RegCustomer> GetCustomers();
+
+        RegCustomer GetCustomerById(int id);
+        int AddCustomer(RegCustomer cust);
+        RegCustomer UpdateCustomer(RegCustomer customer);
+        void DeleteCustomer(int id);
         void Save();
     }
 }
